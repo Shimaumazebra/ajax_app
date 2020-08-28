@@ -1,8 +1,13 @@
 <h1>AjaxApp</h1>
-  <%= form_with url: "/posts", method: :post,id: "form" do |form| %>
-  <%= form.text_field :content %>
+<%= form_with url: "/posts", method: :post,id: "form" do |form| %>
+<% #リセット対象になる為idを設定%>
+   <%= form.text_field :content  , id: "content"%>
+  <% #「投稿する」ボタンの情報を取得する為にidを設定%>
   <%= form.submit '投稿する' , id: "submit" %>
 <% end %>
+<% #投稿後にメモを追加する要素としてlistを追記%>
+<div id="list">
+</div>
 <% @posts.each do |post| %>
   <% #前者はメモのidが入り、後者は既読の有無を管理するcheckedカラムの情報が入ります。%>
   <div class="post" data-id=<%= post.id %> data-check=<%= post.checked %>>
