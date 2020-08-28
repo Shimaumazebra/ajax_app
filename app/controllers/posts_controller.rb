@@ -8,9 +8,11 @@ class PostsController < ApplicationController
    # def new
    # end
  
-  def create
-    Post.create(content: params[:content])
-    redirect_to action: :index
+   def create
+    # 既読や未読の情報を追加したため「メモ作成時に未読の情報を保存するようにしたこと
+    post = Post.create(content: params[:content], checked: false)
+    # Ajaxを実現するため「レスポンスをJSONに変更したこと」
+    render json:{ post: post }
   end
 
   def checked
